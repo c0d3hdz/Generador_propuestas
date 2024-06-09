@@ -3,17 +3,17 @@
     "name": "Generador_propuestas",
     "builds": [
         {
-            "src": "index.html",
+            "src": "/public/index.html",
             "use": "@now/static-site",
             "config": { "zeroConfig": true }
         },
         {
-            "src": "styles.css",
+            "src": "/public/styles.css",
             "use": "@now/static-site",
             "config": { "zeroConfig": true }
         },
         {
-            "src": "app.js",
+            "src": "/public/app.js",
             "use": "@now/static-site",
             "config": { "zeroConfig": true }
         }
