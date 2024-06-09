@@ -1,0 +1,149 @@
+:root {
+    --bg-color: #1c1c1c;
+    --text-color: #e0e0e0;
+    --accent-color: #4a90e2;
+    --highlight-color: #3a3a3a;
+    --border-color: #3a3a3a;
+    --transition-duration: 0.3s;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--highlight-color);
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    background-color: var(--highlight-color);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--border-color);
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    background: var(--accent-color);
+    transition: width var(--transition-duration);
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+main {
+    padding: 2rem;
+}
+
+.container {
+    background-color: var(--highlight-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-duration);
+    width: 600px;
+    box-sizing: border-box;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.container h2 {
+    margin-top: 0;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color var(--transition-duration);
+}
+
+button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+form label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+}
+
+form input {
+    text-align: center;
+    width: 95%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+}
+
+form input[type='submit'] {
+    background-color: var(--accent-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+form input[type='submit']:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+#resultadoEstimacion {
+    display: none;
+    background-color: var(--highlight-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+#detalleEstimacion p {
+    margin: 0.5rem 0;
+}
+
+.icon {
+    margin-right: 0.5rem;
+}
+.icon-nav {
+    margin-right: 0.5rem;
+}
