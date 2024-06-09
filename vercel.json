@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "name": "Generador_propuestas",
+    "builds": [
+        {
+            "src": "index.html",
+            "use": "@now/static-site",
+            "config": { "zeroConfig": true }
+        },
+        {
+            "src": "styles.css",
+            "use": "@now/static-site",
+            "config": { "zeroConfig": true }
+        },
+        {
+            "src": "app.js",
+            "use": "@now/static-site",
+            "config": { "zeroConfig": true }
+        }
+    ],
+    "routes": [{ "handle": "filesystem" }]
+}
