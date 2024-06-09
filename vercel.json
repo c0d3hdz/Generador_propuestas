@@ -1,22 +1,9 @@
 {
     "version": 2,
-    "name": "Generador_propuestas",
     "builds": [
-        {
-            "src": "/public/index.html",
-            "use": "@now/static-site",
-            "config": { "zeroConfig": true }
-        },
-        {
-            "src": "/public/styles.css",
-            "use": "@now/static-site",
-            "config": { "zeroConfig": true }
-        },
-        {
-            "src": "/public/app.js",
-            "use": "@now/static-site",
-            "config": { "zeroConfig": true }
-        }
+        { "src": "public/**/*", "use": "@vercel/static" }
     ],
-    "routes": [{ "handle": "filesystem" }]
+    "routes": [
+        { "src": "/(.*)", "dest": "/public/$1" }
+    ]
 }
