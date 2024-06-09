@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const materiales = JSON.parse(localStorage.getItem('materiales')) || []
     const manoObra = JSON.parse(localStorage.getItem('manoObra')) || []
+    const Historial = JSON.parse(localStorage.getItem('Historial')) || []
 
     const mostrarFormulario = formularioId => {
         document.querySelectorAll('.formulario').forEach(form => (form.style.display = 'none'))
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalManoObra = document.querySelector('#detalleEstimacion p:nth-child(3)').textContent
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(4)').textContent
         const fechaProyecto = document.getElementById('fechaProyecto').value
+
         doc.text(fechaProyecto, 10, 10)
         doc.text(nombreProyecto, 10, 20)
         doc.text(totalMateriales, 10, 30)
@@ -92,6 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.text(totalEstimado, 10, 50)
 
         doc.save('estimacion.pdf')
+
+        Historial.push({
+            fechaProyecto: fechaProyecto,
+            Proyecto: nombreProyecto,
+            totalMateriales: totalMateriales,
+            totalManoObra: totalManoObra,
+            totalEstimado: totalEstimado,
+        })
+        localStorage.setItem('Historial', JSON.stringify(Historial))
+        console.log(Historial)
     }
 
     actualizarLista('listaMateriales', materiales)
