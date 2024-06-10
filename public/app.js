@@ -42,24 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemDiv = document.createElement('div')
             itemDiv.className = 'historial-item'
             itemDiv.innerHTML = `
-                <p><strong>Fecha:</strong> ${item.fechaProyecto}</p>
-                <p><strong>Proyecto:</strong> ${item.Proyecto}</p>
-                <p><strong>Materiales:</strong> ${item.materiales
-                    .map(mat => `${mat.nombre}: ${mat.cantidad} * $${mat.precio}`)
-                    .join('<br>')}</p>
-                <p><strong>Total Materiales:</strong> $${Number(
-                    item.totalMateriales.replace('Total Materiales: $', ''),
-                ).toFixed(2)}</p>
-                <p><strong>Mano de Obra:</strong> ${item.manoObra
-                    .map(trab => `${trab.nombre}: ${trab.metros} * $${trab.precio}`)
-                    .join('<br>')}</p>
-                <p><strong>Total Mano de Obra:</strong> $${Number(
-                    item.totalManoObra.replace('Total Mano de Obra: $', ''),
-                ).toFixed(2)}</p>
-                <p><strong>Total Estimado:</strong> $${Number(
-                    item.totalEstimado.replace('Total Estimado: $', ''),
-                ).toFixed(2)}</p>
-            `
+            <p><strong>Fecha:</strong> ${item.fechaProyecto}</p>
+            <p><strong>Proyecto:</strong> ${item.Proyecto}</p>
+            <p><strong>Materiales:</strong> ${item.materiales
+                .map(mat => `${mat.nombre}: ${mat.cantidad} * $${mat.precio}`)
+                .join('<br>')}</p>
+            <p><strong>Total Materiales:</strong> $${Number(
+                item.totalMateriales.replace('Total Materiales: $', ''),
+            ).toFixed(2)}</p>
+            <p><strong>Mano de Obra:</strong> ${item.manoObra
+                .map(trab => `${trab.nombre}: ${trab.metros} * $${trab.precio}`)
+                .join('<br>')}</p>
+            <p><strong>Total Mano de Obra:</strong> $${Number(
+                item.totalManoObra.replace('Total Mano de Obra: $', ''),
+            ).toFixed(2)}</p>
+            <p><strong>Total Estimado:</strong> $${Number(item.totalEstimado.replace('Total Estimado: $', '')).toFixed(
+                2,
+            )}</p>
+        `
             historialEstimaciones.appendChild(itemDiv)
         })
 
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const manoObraDetalle = document.querySelector('#detalleEstimacion p:nth-child(5)').innerHTML
         const totalManoObra = document.querySelector('#detalleEstimacion p:nth-child(6)').textContent
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(7)').textContent
-
+        const Proyecto = document.getElementById('nombreProyecto').value
         doc.text(fechaProyecto, 10, 10)
         doc.text(nombreProyecto, 10, 20)
         doc.text('Materiales:', 10, 30)
@@ -149,10 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.text(totalEstimado, 10, 130)
 
         doc.save('estimacion.pdf')
-
         Historial.push({
             fechaProyecto: fechaProyecto,
-            Proyecto: nombreProyecto,
+            Proyecto: Proyecto,
             materiales: materiales,
             totalMateriales: totalMateriales,
             manoObra: manoObra,
