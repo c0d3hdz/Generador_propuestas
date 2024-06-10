@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalEstimado: totalEstimado,
         })
         localStorage.setItem('Historial', JSON.stringify(Historial))
+        window.location.reload()
     }
 
     actualizarLista('listaMateriales', materiales)
