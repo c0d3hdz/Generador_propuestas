@@ -17,63 +17,73 @@
             <a href="#"><i class="fas fa-envelope icon-nav"></i>Contacto</a>
         </nav>
         <main>
-            <div>
-                <button onclick="mostrarFormulario('preciosMateriales')">
-                    <i class="fas fa-project-diagram icon"></i>Quiero Iniciar una Propuesta!!
-                </button>
-                <button onclick="mostrarFormulario('preciosManoObra')">
-                    <i class="fas fa-hard-hat icon"></i>Agregar Mano de Obra
-                </button>
-                <button onclick="mostrarFormulario('crearEstimaciones')">
-                    <i class="fas fa-file-invoice-dollar icon"></i>Crear Estimaciones
-                </button>
-            </div>
-            <br /><br />
-            <div class="container formulario" id="formularioPreciosMateriales" style="display: none">
-                <h2>Precios de Materiales</h2>
-                <form id="formMateriales">
-                    <label for="nombreMaterial">Nombre del Material:</label>
-                    <input type="text" id="nombreMaterial" required />
-                    <label for="cantidadMaterial">Cantidad:</label>
-                    <input type="number" id="cantidadMaterial" required />
-                    <label for="precioMaterial">Precio:</label>
-                    <input type="number" id="precioMaterial" required />
-                    <input type="submit" value="Agregar Material" />
-                </form>
-                <div id="listaMateriales"></div>
-            </div>
-            <div class="container formulario" id="formularioPreciosManoObra" style="display: none">
-                <h2>Precios de Mano de Obra</h2>
-                <form id="formManoObra">
-                    <label for="nombreTrabajo">Nombre del Trabajo:</label>
-                    <input type="text" id="nombreTrabajo" required />
-                    <label for="cantidadMetros">Cantidad de Metros:</label>
-                    <input type="number" id="cantidadMetros" required />
-                    <label for="precioTrabajo">Precio por Metro:</label>
-                    <input type="number" id="precioTrabajo" required />
-                    <input type="submit" value="Agregar Trabajo" />
-                </form>
-                <div id="listaManoObra"></div>
-            </div>
-            <div class="container formulario" id="formularioCrearEstimaciones" style="display: none">
-                <h2>Crear Estimaciones</h2>
-                <form id="formProyecto">
-                    <label for="nombreProyecto">Nombre del Proyecto:</label>
-                    <input type="text" id="nombreProyecto" required />
-                    <label for="fechaProyecto">Fecha</label>
-                    <input type="date" name="fechaProyecto" id="fechaProyecto" />
-                    <h3>Materiales</h3>
-                    <div id="listaMaterialesProyecto"></div>
-                    <h3>Mano de Obra</h3>
-                    <div id="listaManoObraProyecto"></div>
-                    <input type="submit" value="Generar Estimación" />
-                </form>
-                <div id="resultadoEstimacion" class="resultado">
-                    <h2>Estimación del Proyecto</h2>
-                    <div id="detalleEstimacion"></div>
-                    <button type="button" onclick="imprimirEstimacion()">Imprimir Estimación</button>
+            <section>
+                <div>
+                    <button onclick="mostrarFormulario('preciosMateriales')">
+                        <i class="fas fa-project-diagram icon"></i>Quiero Iniciar una Propuesta!!
+                    </button>
+                    <button onclick="mostrarFormulario('preciosManoObra')">
+                        <i class="fas fa-hard-hat icon"></i>Agregar Mano de Obra
+                    </button>
+                    <button onclick="mostrarFormulario('crearEstimaciones')">
+                        <i class="fas fa-file-invoice-dollar icon"></i>Crear Estimaciones
+                    </button>
                 </div>
-            </div>
+                <br /><br />
+                <div class="container formulario" id="formularioPreciosMateriales" style="display: none">
+                    <h2>Precios de Materiales</h2>
+                    <form id="formMateriales">
+                        <label for="nombreMaterial">Nombre del Material:</label>
+                        <input type="text" id="nombreMaterial" required />
+                        <label for="cantidadMaterial">Cantidad:</label>
+                        <input type="number" id="cantidadMaterial" required />
+                        <label for="precioMaterial">Precio:</label>
+                        <input type="number" id="precioMaterial" required />
+                        <input type="submit" value="Agregar Material" />
+                    </form>
+                    <div id="listaMateriales"></div>
+                </div>
+                <div class="container formulario" id="formularioPreciosManoObra" style="display: none">
+                    <h2>Precios de Mano de Obra</h2>
+                    <form id="formManoObra">
+                        <label for="nombreTrabajo">Nombre del Trabajo:</label>
+                        <input type="text" id="nombreTrabajo" required />
+                        <label for="cantidadMetros">Cantidad de Metros:</label>
+                        <input type="number" id="cantidadMetros" required />
+                        <label for="precioTrabajo">Precio por Metro:</label>
+                        <input type="number" id="precioTrabajo" required />
+                        <input type="submit" value="Agregar Trabajo" />
+                    </form>
+                    <div id="listaManoObra"></div>
+                </div>
+                <div class="container formulario" id="formularioCrearEstimaciones" style="display: none">
+                    <h2>Crear Estimaciones</h2>
+                    <button onclick="(limpiarDatos())">Limpiar datos</button>
+                    <form id="formProyecto">
+                        <label for="nombreProyecto">Nombre del Proyecto:</label>
+                        <input type="text" id="nombreProyecto" required />
+                        <label for="fechaProyecto">Fecha</label>
+                        <input type="date" name="fechaProyecto" id="fechaProyecto" />
+                        <h3>Materiales</h3>
+                        <div id="listaMaterialesProyecto"></div>
+                        <h3>Mano de Obra</h3>
+                        <div id="listaManoObraProyecto"></div>
+                        <input type="submit" value="Generar Estimación" />
+                    </form>
+                    <div id="resultadoEstimacion" class="resultado">
+                        <h2>Estimación del Proyecto</h2>
+                        <div id="detalleEstimacion"></div>
+                        <button type="button" onclick="imprimirEstimacion()">Imprimir Estimación</button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container" id="historialContainer">
+                    <h2>Historial de Estimaciones</h2>
+                    <button onclick="(limpiarHistorial())">Limpiar Historial</button>
+                    <div id="historialEstimaciones"></div>
+                </div>
+            </section>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="app.js"></script>

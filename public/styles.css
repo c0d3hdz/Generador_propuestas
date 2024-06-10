@@ -65,16 +65,23 @@ nav a:hover::after {
 
 main {
     padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    section {
+        min-width: calc(80% / 2);
+        max-width: 90%;
+    }
+    gap: 10%;
 }
 
 .container {
+    text-align: start;
     background-color: var(--highlight-color);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
     transition: transform var(--transition-duration);
-    width: 600px;
     box-sizing: border-box;
 }
 
@@ -107,7 +114,7 @@ form label {
 }
 
 form input {
-    text-align: center;
+    text-align: start;
     width: 95%;
     padding: 0.5rem;
     border: 1px solid var(--border-color);
@@ -123,6 +130,9 @@ form input[type='submit'] {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 1rem;
+    width: 140px;
+    text-align: center;
+    box-sizing: content-box;
 }
 
 form input[type='submit']:hover {
@@ -146,4 +156,20 @@ form input[type='submit']:hover {
 }
 .icon-nav {
     margin-right: 0.5rem;
+}
+.historial-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: content-box;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.historial-item p {
+    margin: 5px 0;
+}
+
+.historial-item strong {
+    display: inline-block;
+    width: 150px;
 }
