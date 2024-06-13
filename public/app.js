@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
 
             historialContainer.style.display = 'block'
-        }, 1000) 
+        }, 1000)
     }
 
     document.getElementById('formMateriales').addEventListener('submit', e => {
@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalManoObra = document.querySelector('#detalleEstimacion p:nth-child(6)').textContent
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(7)').textContent
         const Proyecto = document.getElementById('nombreProyecto').value
+        const fechaProyecto_historial = document.getElementById('fechaProyecto').value
         doc.text(fechaProyecto, 10, 10)
         doc.text(nombreProyecto, 10, 20)
         doc.text('Materiales:', 10, 30)
@@ -158,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         doc.save('estimacion.pdf')
         Historial.push({
-            fechaProyecto: fechaProyecto,
+            fechaProyecto: fechaProyecto_historial,
             Proyecto: Proyecto,
             materiales: materiales,
             totalMateriales: totalMateriales,
