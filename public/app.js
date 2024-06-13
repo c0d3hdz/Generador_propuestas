@@ -168,13 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         currentY += lineHeight * 1.5
 
         // Agregar la sección de materiales
-        doc.setFontSize(sectionFontSize)
+        doc.setFontSize(textFontSize)
         doc.text(materialesDetalle.replace(/<br>/g, '\n'), startX, currentY)
         currentY += lineHeight
         currentY += lineHeight * materialesDetalle.split('<br>').length
 
         // Agregar el total de materiales
-        doc.setFontSize(sectionFontSize)
+        doc.setFontSize(textFontSize)
         doc.text(totalMateriales, startX, currentY)
         currentY += lineHeight * 1.5
 
