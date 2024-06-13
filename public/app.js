@@ -38,32 +38,40 @@ document.addEventListener('DOMContentLoaded', () => {
         const historialEstimaciones = document.getElementById('historialEstimaciones')
         historialEstimaciones.innerHTML = ''
 
-        Historial.forEach((item, index) => {
-            const itemDiv = document.createElement('div')
-            itemDiv.className = 'historial-item'
-            itemDiv.innerHTML = `
-            <p><strong>Fecha:</strong> ${item.fechaProyecto}</p>
-            <p><strong>Proyecto:</strong> ${item.Proyecto}</p>
-            <p><strong>Materiales:</strong> ${item.materiales
-                .map(mat => `${mat.nombre}: ${mat.cantidad} * $${mat.precio}`)
-                .join('<br>')}</p>
-            <p><strong>Total Materiales:</strong> $${Number(
-                item.totalMateriales.replace('Total Materiales: $', ''),
-            ).toFixed(2)}</p>
-            <p><strong>Mano de Obra:</strong> ${item.manoObra
-                .map(trab => `${trab.nombre}: ${trab.metros} * $${trab.precio}`)
-                .join('<br>')}</p>
-            <p><strong>Total Mano de Obra:</strong> $${Number(
-                item.totalManoObra.replace('Total Mano de Obra: $', ''),
-            ).toFixed(2)}</p>
-            <p><strong>Total Estimado:</strong> $${Number(item.totalEstimado.replace('Total Estimado: $', '')).toFixed(
-                2,
-            )}</p>
-        `
-            historialEstimaciones.appendChild(itemDiv)
-        })
+        const loader = document.createElement('div')
+        loader.className = 'loader'
+        historialEstimaciones.appendChild(loader)
 
-        historialContainer.style.display = 'block'
+        setTimeout(() => {
+            historialEstimaciones.removeChild(loader)
+
+            Historial.forEach((item, index) => {
+                const itemDiv = document.createElement('div')
+                itemDiv.className = 'historial-item'
+                itemDiv.innerHTML = `
+                <p><strong>Fecha:</strong> ${item.fechaProyecto}</p>
+                <p><strong>Proyecto:</strong> ${item.nombreProyecto}</p>
+                <p><strong>Materiales:</strong> ${item.materiales
+                    .map(mat => `${mat.nombre}: ${mat.cantidad} * $${mat.precio}`)
+                    .join('<br>')}</p>
+                <p><strong>Total Materiales:</strong> $${Number(
+                    item.totalMateriales.replace('Total Materiales: $', ''),
+                ).toFixed(2)}</p>
+                <p><strong>Mano de Obra:</strong> ${item.manoObra
+                    .map(trab => `${trab.nombre}: ${trab.metros} * $${trab.precio}`)
+                    .join('<br>')}</p>
+                <p><strong>Total Mano de Obra:</strong> $${Number(
+                    item.totalManoObra.replace('Total Mano de Obra: $', ''),
+                ).toFixed(2)}</p>
+                <p><strong>Total Estimado:</strong> $${Number(
+                    item.totalEstimado.replace('Total Estimado: $', ''),
+                ).toFixed(2)}</p>
+            `
+                historialEstimaciones.appendChild(itemDiv)
+            })
+
+            historialContainer.style.display = 'block'
+        }, 1000) 
     }
 
     document.getElementById('formMateriales').addEventListener('submit', e => {

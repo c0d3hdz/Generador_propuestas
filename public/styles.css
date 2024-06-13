@@ -1,23 +1,24 @@
 :root {
-    --bg-color: #1c1c1c;
-    --text-color: #e0e0e0;
-    --accent-color: #4a90e2;
-    --highlight-color: #3a3a3a;
-    --border-color: #3a3a3a;
+    --bg-color: #202124;
+    --text-color: #e8eaed;
+    --accent-color: #bb86fc;
+    --highlight-color: #303134;
+    --border-color: #5f6368;
     --transition-duration: 0.3s;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
 header {
     background-color: var(--highlight-color);
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     border-bottom: 2px solid var(--border-color);
 }
@@ -25,23 +26,25 @@ header {
 header h1 {
     margin: 0;
     font-size: 2rem;
+    color: var(--accent-color);
 }
 
 nav {
-    background-color: var(--highlight-color);
     display: flex;
     justify-content: center;
-    padding: 1rem 0;
-    border-bottom: 2px solid var(--border-color);
+    padding: 1rem;
+    background-color: var(--highlight-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
     margin: 0 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     position: relative;
     padding: 0.5rem 0;
+    transition: color var(--transition-duration);
 }
 
 nav a:hover {
@@ -64,35 +67,35 @@ nav a:hover::after {
 }
 
 main {
-    padding-top: 2rem;
+    padding: 2rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    section {
-        min-width: calc(80% / 2);
-        max-width: 90%;
-    }
-    gap: 10%;
 }
 
 .container {
-    text-align: start;
     background-color: var(--highlight-color);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
-    transition: transform var(--transition-duration);
-    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+    width: 100%;
+    max-width: 600px;
 }
 
 .container:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .container h2 {
     margin-top: 0;
+    color: var(--accent-color);
+    text-align: center;
 }
 
 button {
@@ -103,26 +106,64 @@ button {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
-    transition: background-color var(--transition-duration);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button:hover {
-    background-color: darken(var(--accent-color), 10%);
+    background-color: #9c4dcc;
+    transform: translateY(-2px);
 }
 
+button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+}
+
+.loader {
+    border: 4px solid var(--text-color);
+    border-radius: 50%;
+    border-top: 4px solid var(--accent-color);
+    width: 30px;
+    height: 30px;
+    margin: 20px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+form {
+    padding: 10px;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: start;
+    align-items: start;
+}
 form label {
     display: block;
     margin: 1rem 0 0.5rem;
 }
 
 form input {
-    text-align: start;
-    width: 95%;
-    padding: 0.5rem;
+    width: calc(100%);
+    padding: 0.75rem;
+    box-sizing: border-box;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     background-color: #2a2a2a;
     color: var(--text-color);
+    margin-bottom: 1rem;
 }
 
 form input[type='submit'] {
@@ -131,14 +172,12 @@ form input[type='submit'] {
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 1rem;
-    width: 140px;
-    text-align: center;
-    box-sizing: content-box;
+    transition: background-color var(--transition-duration);
+    width: 80%;
 }
 
 form input[type='submit']:hover {
-    background-color: darken(var(--accent-color), 10%);
+    background-color: #9c4dcc;
 }
 
 #resultadoEstimacion {
@@ -156,13 +195,14 @@ form input[type='submit']:hover {
 .icon {
     margin-right: 0.5rem;
 }
+
 .icon-nav {
     margin-right: 0.5rem;
 }
+
 .historial-item {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     padding: 10px;
-    box-sizing: content-box;
     margin-bottom: 10px;
     border-radius: 5px;
 }
@@ -174,4 +214,25 @@ form input[type='submit']:hover {
 .historial-item strong {
     display: inline-block;
     width: 150px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+    }
+
+    button {
+        width: 80%;
+        margin-top: 10px;
+    }
+    .container {
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
 }
