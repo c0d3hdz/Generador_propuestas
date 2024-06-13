@@ -32,9 +32,9 @@ header h1 {
 nav {
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    padding: 5px;
     background-color: var(--highlight-color);
-    border-bottom: 1px solid var(--border-color);
+
 }
 
 nav a {
