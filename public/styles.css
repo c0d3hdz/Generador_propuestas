@@ -64,7 +64,9 @@ nav a:hover::after {
 }
 
 main {
-    padding: 2rem;
+    padding-top: 2rem;
+    justify-content: center;
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
     section {
