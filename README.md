@@ -1,7 +1,10 @@
 # Generador de Estimaciones de Construcción
 
 Este proyecto es una aplicación web diseñada para ayudar a los profesionales de la construcción a generar estimaciones de costos de manera eficiente. La aplicación permite a los usuarios ingresar materiales y mano de obra necesarios para un proyecto, calcular el costo total y generar una estimación detallada en formato PDF.
-
+## Pendiente 
+- **Agregar** mas opcione en "mano de obra".
+- **Mejorar** Diseño de interfaz.
+- **Agregar** opciones de guardado y reimpresión de PDF.
 ## Características
 
 - **Agregar Materiales**: Permite agregar materiales con nombre, cantidad y precio unitario.
