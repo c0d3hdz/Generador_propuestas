@@ -138,6 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const { jsPDF } = window.jspdf
         const doc = new jsPDF()
 
+        // Definir estilos
+        const titleFontSize = 16
+        const sectionFontSize = 14
+        const textFontSize = 12
+        const lineHeight = 10
+        const startX = 10
+        let currentY = 10
+
         const nombreProyecto = document.querySelector('#detalleEstimacion p:nth-child(1)').textContent
         const fechaProyecto = document.querySelector('#detalleEstimacion p:nth-child(2)').textContent
         const materialesDetalle = document.querySelector('#detalleEstimacion p:nth-child(3)').innerHTML
@@ -147,17 +155,46 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(7)').textContent
         const Proyecto = document.getElementById('nombreProyecto').value
         const fechaProyecto_historial = document.getElementById('fechaProyecto').value
-        doc.text(fechaProyecto, 10, 10)
-        doc.text(nombreProyecto, 10, 20)
-        doc.text('Materiales:', 10, 30)
-        doc.text(materialesDetalle.replace(/<br>/g, '\n'), 10, 40)
-        doc.text(totalMateriales, 10, 70)
-        doc.text('Mano de Obra:', 10, 80)
-        doc.text(manoObraDetalle.replace(/<br>/g, '\n'), 10, 90)
-        doc.text(totalManoObra, 10, 120)
-        doc.text(totalEstimado, 10, 130)
+        // Agregar el título
+        doc.setFontSize(titleFontSize)
+        doc.text('Estimación del Proyecto', startX, currentY)
+        currentY += lineHeight
 
+        // Agregar la fecha y el nombre del proyecto
+        doc.setFontSize(sectionFontSize)
+        doc.text(`${fechaProyecto}`, startX, currentY)
+        currentY += lineHeight
+        doc.text(`${nombreProyecto}`, startX, currentY)
+        currentY += lineHeight * 1.5
+
+        // Agregar la sección de materiales
+        doc.setFontSize(sectionFontSize)
+        doc.text(materialesDetalle.replace(/<br>/g, '\n'), startX, currentY)
+        currentY += lineHeight
+
+        // Agregar el total de materiales
+        doc.setFontSize(sectionFontSize)
+        doc.text(totalMateriales, startX, currentY)
+        currentY += lineHeight * 1.5
+
+        // Agregar la sección de mano de obra
+        doc.setFontSize(sectionFontSize)
+        doc.text(manoObraDetalle.replace(/<br>/g, '\n'), startX, currentY)
+        currentY += lineHeight
+
+        // Agregar el total de mano de obra
+        doc.setFontSize(sectionFontSize)
+        doc.text(totalManoObra, startX, currentY)
+        currentY += lineHeight * 1.5
+
+        // Agregar el total estimado
+        doc.setFontSize(sectionFontSize)
+        doc.text(totalEstimado, startX, currentY)
+        currentY += lineHeight * 1.5
+
+        // Guardar el PDF
         doc.save('estimacion.pdf')
+
         Historial.push({
             fechaProyecto: fechaProyecto_historial,
             Proyecto: Proyecto,
