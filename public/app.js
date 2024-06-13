@@ -171,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.setFontSize(sectionFontSize)
         doc.text(materialesDetalle.replace(/<br>/g, '\n'), startX, currentY)
         currentY += lineHeight
+        currentY += lineHeight * materialesDetalle.split('<br>').length
 
         // Agregar el total de materiales
         doc.setFontSize(sectionFontSize)
@@ -181,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.setFontSize(sectionFontSize)
         doc.text(manoObraDetalle.replace(/<br>/g, '\n'), startX, currentY)
         currentY += lineHeight
+        currentY += lineHeight * manoObraDetalle.split('<br>').length
 
         // Agregar el total de mano de obra
         doc.setFontSize(sectionFontSize)
