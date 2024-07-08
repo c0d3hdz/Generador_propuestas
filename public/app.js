@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lista.innerHTML = ''
         items.forEach(item => {
             const itemDiv = document.createElement('div')
-            itemDiv.textContent = `${item.nombre} - ${item.cantidad || item.metros} - $${item.precio}`
+            itemDiv.textContent = `${item.nombre} - ${item.cantidad} ${item.unidad} - $${item.precio}`
             lista.appendChild(itemDiv)
         })
     }
@@ -78,8 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault()
         const nombreMaterial = document.getElementById('nombreMaterial').value
         const cantidadMaterial = document.getElementById('cantidadMaterial').value
+        const unidadMaterial = document.getElementById('unidadMaterial').value
         const precioMaterial = document.getElementById('precioMaterial').value
-        materiales.push({ nombre: nombreMaterial, cantidad: cantidadMaterial, precio: precioMaterial })
+        materiales.push({
+            nombre: nombreMaterial,
+            cantidad: cantidadMaterial,
+            unidad: unidadMaterial,
+            precio: precioMaterial,
+        })
         localStorage.setItem('materiales', JSON.stringify(materiales))
         document.getElementById('formMateriales').reset()
         actualizarLista('listaMateriales', materiales)
@@ -90,8 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault()
         const nombreTrabajo = document.getElementById('nombreTrabajo').value
         const cantidadMetros = document.getElementById('cantidadMetros').value
+        const unidadTrabajo = document.getElementById('unidadTrabajo').value
         const precioTrabajo = document.getElementById('precioTrabajo').value
-        manoObra.push({ nombre: nombreTrabajo, metros: cantidadMetros, precio: precioTrabajo })
+        manoObra.push({ nombre: nombreTrabajo, cantidad: cantidadMetros, unidad: unidadTrabajo, precio: precioTrabajo })
         localStorage.setItem('manoObra', JSON.stringify(manoObra))
         document.getElementById('formManoObra').reset()
         actualizarLista('listaManoObra', manoObra)
@@ -110,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         manoObra.forEach(trabajo => {
-            totalManoObra += Number(trabajo.metros) * Number(trabajo.precio)
+            totalManoObra += Number(trabajo.cantidad) * Number(trabajo.precio)
         })
 
         const total = totalMateriales + totalManoObra
@@ -119,18 +126,18 @@ document.addEventListener('DOMContentLoaded', () => {
             .map(material => `${material.nombre}: ${material.cantidad} * $${material.precio}`)
             .join('<br>')
         const manoObraDetalle = manoObra
-            .map(trabajo => `${trabajo.nombre}: ${trabajo.metros} * $${trabajo.precio}`)
+            .map(trabajo => `${trabajo.nombre}: ${trabajo.cantidad} * $${trabajo.precio}`)
             .join('<br>')
 
         document.getElementById('detalleEstimacion').innerHTML = `
-            <p>Nombre del Proyecto: ${nombreProyecto}</p>
-            <p>Fecha: ${fechaProyecto}</p>
-            <p>Materiales:<br>${materialesDetalle}</p>
-            <p>Total Materiales: $${totalMateriales.toFixed(2)}</p>
-            <p>Mano de Obra:<br>${manoObraDetalle}</p>
-            <p>Total Mano de Obra: $${totalManoObra.toFixed(2)}</p>
-            <p>Total Estimado: $${total.toFixed(2)}</p>
-        `
+        <p>Nombre del Proyecto: ${nombreProyecto}</p>
+        <p>Fecha: ${fechaProyecto}</p>
+        <p>Materiales:<br>${materialesDetalle}</p>
+        <p>Total Materiales: $${totalMateriales.toFixed(2)}</p>
+        <p>Mano de Obra:<br>${manoObraDetalle}</p>
+        <p>Total Mano de Obra: $${totalManoObra.toFixed(2)}</p>
+        <p>Total Estimado: $${total.toFixed(2)}</p>
+    `
         document.getElementById('resultadoEstimacion').style.display = 'block'
     })
 
@@ -138,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const { jsPDF } = window.jspdf
         const doc = new jsPDF()
 
-        // Definir estilos
         const titleFontSize = 16
         const sectionFontSize = 14
         const textFontSize = 12
@@ -148,58 +154,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nombreProyecto = document.querySelector('#detalleEstimacion p:nth-child(1)').textContent
         const fechaProyecto = document.querySelector('#detalleEstimacion p:nth-child(2)').textContent
-        const materialesDetalle = document.querySelector('#detalleEstimacion p:nth-child(3)').innerHTML
+        const materialesDetalle = materiales
+            .map(material => `${material.nombre}: ${material.cantidad} ${material.unidad} * $${material.precio}`)
+            .join('\n')
         const totalMateriales = document.querySelector('#detalleEstimacion p:nth-child(4)').textContent
-        const manoObraDetalle = document.querySelector('#detalleEstimacion p:nth-child(5)').innerHTML
+        const manoObraDetalle = manoObra
+            .map(trabajo => `${trabajo.nombre}: ${trabajo.cantidad} ${trabajo.unidad} * $${trabajo.precio}`)
+            .join('\n')
         const totalManoObra = document.querySelector('#detalleEstimacion p:nth-child(6)').textContent
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(7)').textContent
-        const Proyecto = document.getElementById('nombreProyecto').value
-        const fechaProyecto_historial = document.getElementById('fechaProyecto').value
-        // Agregar el título
+
         doc.setFontSize(titleFontSize)
         doc.text('Estimación del Proyecto', startX, currentY)
         currentY += lineHeight
 
-        // Agregar la fecha y el nombre del proyecto
         doc.setFontSize(sectionFontSize)
         doc.text(`${fechaProyecto}`, startX, currentY)
         currentY += lineHeight
         doc.text(`${nombreProyecto}`, startX, currentY)
         currentY += lineHeight * 1.5
 
-        // Agregar la sección de materiales
         doc.setFontSize(textFontSize)
-        doc.text(materialesDetalle.replace(/<br>/g, '\n'), startX, currentY)
-        currentY += lineHeight
-        currentY += lineHeight * materialesDetalle.split('<br>').length
+        doc.text(materialesDetalle, startX, currentY)
+        currentY += lineHeight * materiales.length
 
-        // Agregar el total de materiales
         doc.setFontSize(sectionFontSize)
         doc.text(totalMateriales, startX, currentY)
         currentY += lineHeight * 1.5
 
-        // Agregar la sección de mano de obra
         doc.setFontSize(textFontSize)
-        doc.text(manoObraDetalle.replace(/<br>/g, '\n'), startX, currentY)
-        currentY += lineHeight
-        currentY += lineHeight * manoObraDetalle.split('<br>').length
+        doc.text(manoObraDetalle, startX, currentY)
+        currentY += lineHeight * manoObra.length
 
-        // Agregar el total de mano de obra
         doc.setFontSize(sectionFontSize)
         doc.text(totalManoObra, startX, currentY)
         currentY += lineHeight * 1.5
 
-        // Agregar el total estimado
         doc.setFontSize(sectionFontSize)
         doc.text(totalEstimado, startX, currentY)
         currentY += lineHeight * 1.5
 
-        // Guardar el PDF
         doc.save('estimacion.pdf')
 
         Historial.push({
-            fechaProyecto: fechaProyecto_historial,
-            Proyecto: Proyecto,
+            fechaProyecto: fechaProyecto,
+            Proyecto: nombreProyecto,
             materiales: materiales,
             totalMateriales: totalMateriales,
             manoObra: manoObra,
