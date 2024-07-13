@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const itemDiv = document.createElement('div')
                 itemDiv.className = 'historial-item'
                 itemDiv.innerHTML = `
-                <p><strong>Fecha:</strong> ${item.fechaProyecto}</p>
-                <p><strong>Proyecto:</strong> ${item.Proyecto}</p>
-                <p><strong>Materiales:</strong> ${item.materiales
+                <p><strong>${item.fechaProyecto}</strong></p>
+                <p><strong>${item.Proyecto}</strong></p>
+                <p><strong>Materiales:</strong><br> ${item.materiales
                     .map(mat => `${mat.nombre}: ${mat.cantidad} * $${mat.precio}`)
                     .join('<br>')}</p>
-                <p><strong>Total Materiales:</strong> $${Number(
+                <p><strong>Total Materiales:</strong>$${Number(
                     item.totalMateriales.replace('Total Materiales: $', ''),
                 ).toFixed(2)}</p>
-                <p><strong>Mano de Obra:</strong> ${item.manoObra
+                <p><strong>Mano de Obra:</strong><br> ${item.manoObra
                     .map(trab => `${trab.nombre}: ${trab.cantidad} * $${trab.precio}`)
                     .join('<br>')}</p>
                 <p><strong>Total Mano de Obra:</strong> $${Number(
