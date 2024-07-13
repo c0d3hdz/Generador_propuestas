@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.totalMateriales.replace('Total Materiales: $', ''),
                 ).toFixed(2)}</p>
                 <p><strong>Mano de Obra:</strong> ${item.manoObra
-                    .map(trab => `${trab.nombre}: ${trab.metros} * $${trab.precio}`)
+                    .map(trab => `${trab.nombre}: ${trab.cantidad} * $${trab.precio}`)
                     .join('<br>')}</p>
                 <p><strong>Total Mano de Obra:</strong> $${Number(
                     item.totalManoObra.replace('Total Mano de Obra: $', ''),
