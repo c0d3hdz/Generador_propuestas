@@ -34,7 +34,6 @@ nav {
     justify-content: center;
     padding: 5px;
     background-color: var(--highlight-color);
-
 }
 
 nav a {
@@ -84,7 +83,6 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform var(--transition-duration), box-shadow var(--transition-duration);
     width: 100%;
-    max-width: 600px;
 }
 
 .container:hover {
@@ -191,14 +189,17 @@ form input[type='submit']:hover {
 #detalleEstimacion p {
     margin: 0.5rem 0;
 }
-.Unidades_select{
+.Unidades_select {
     padding: 10px;
     border-radius: 5px;
     background-color: #2a2a2a;
     color: #888;
 }
-.Unidades_select > option{
+.Unidades_select > option {
     font-size: 15px;
+}
+.input_submit_button {
+    margin: auto;
 }
 .icon {
     margin-right: 0.5rem;

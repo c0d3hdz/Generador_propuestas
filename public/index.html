@@ -19,7 +19,7 @@
         </nav>-->
         <main>
             <section>
-                <div>
+                <div class="options">
                     <button onclick="mostrarFormulario('preciosMateriales')">
                         <i class="fas fa-project-diagram icon"></i>Materiales
                     </button>
@@ -45,7 +45,7 @@
                         </select>
                         <label for="precioMaterial">Precio:</label>
                         <input type="number" id="precioMaterial" required />
-                        <input type="submit" value="Agregar Material" />
+                        <input type="submit" class="input_submit_button" value="Agregar Material" />
                     </form>
                     <div id="listaMateriales"></div>
                 </div>
@@ -64,7 +64,7 @@
                         </select>
                         <label for="precioTrabajo">Precio:</label>
                         <input type="number" id="precioTrabajo" required />
-                        <input type="submit" value="Agregar Trabajo" />
+                        <input type="submit" class="input_submit_button" value="Agregar Trabajo" />
                     </form>
                     <div id="listaManoObra"></div>
                 </div>
@@ -80,7 +80,7 @@
                         <div id="listaMaterialesProyecto"></div>
                         <h3>Mano de Obra</h3>
                         <div id="listaManoObraProyecto"></div>
-                        <input type="submit" value="Generar Estimación" />
+                        <input type="submit" class="input_submit_button" value="Generar Estimación" />
                     </form>
                     <div id="resultadoEstimacion" class="resultado">
                         <h2>Estimación del Proyecto</h2>
