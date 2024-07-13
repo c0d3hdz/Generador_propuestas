@@ -3,24 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Generador de Estimaciones de Construcción</title>
+        <title>Estimaciones de Construcción</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <link
-            rel="icon"
-            href="https://svgl.app/library/vercel_dark.svg"
-            type="image/svg+xml"
-        />
+        <link rel="icon" href="https://svgl.app/library/vercel_dark.svg" type="image/svg+xml" />
     </head>
     <body>
         <header>
-            <h1>Generador de Estimaciones de Construcción</h1>
+            <h1>Estimaciones de Construcción</h1>
         </header>
-        <nav>
+        <!--<nav>
             <a href="#"><i class="fas fa-home icon-nav"></i>Inicio</a>
             <a href="#"><i class="fas fa-question-circle icon-nav"></i>Ayuda</a>
             <a href="#"><i class="fas fa-envelope icon-nav"></i>Contacto</a>
-        </nav>
+        </nav>-->
         <main>
             <section>
                 <div>
@@ -42,8 +38,8 @@
                         <input type="text" id="nombreMaterial" required />
                         <label for="cantidadMaterial">Cantidad:</label>
                         <input type="number" id="cantidadMaterial" required />
-                        <label for="unidadMaterial">Unidad:</label>
-                        <select id="unidadMaterial" required>
+                        <label for="unidadMaterial">Unidad de medida:</label>
+                        <select id="unidadMaterial" class="Unidades_select" required>
                             <option value="unidades">Unidades</option>
                             <option value="metros cuadrados">Metros Cuadrados</option>
                         </select>
@@ -60,13 +56,13 @@
                         <input type="text" id="nombreTrabajo" required />
                         <label for="cantidadMetros">Cantidad:</label>
                         <input type="number" id="cantidadMetros" required />
-                        <label for="unidadTrabajo">Unidad:</label>
-                        <select id="unidadTrabajo" required>
+                        <label for="unidadTrabajo">Unidad de medida:</label>
+                        <select id="unidadTrabajo" class="Unidades_select" required>
                             <option value="metros">Metros Lineales</option>
                             <option value="metros cuadrados">Metros Cuadrados</option>
                             <option value="unidades">Unidades</option>
                         </select>
-                        <label for="precioTrabajo">Precio por Unidad:</label>
+                        <label for="precioTrabajo">Precio:</label>
                         <input type="number" id="precioTrabajo" required />
                         <input type="submit" value="Agregar Trabajo" />
                     </form>

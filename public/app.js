@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const limpiarDatos = () => {
-        if (confirm('¿Estás seguro de que deseas limpiar todos los datos?')) {
+        if (confirm('Esto borrara los datos de "Materiales" y "Mano de obra", ¿Seguro que deseas limpiar los datos?')) {
             localStorage.removeItem('materiales')
             localStorage.removeItem('manoObra')
             window.location.reload()
         }
     }
     const limpiarHistorial = () => {
-        if (confirm('¿Estás seguro de que deseas limpiar el Historial?')) {
+        if (confirm('¿Estás seguro de que deseas limpiar todos los datos?')) {
             localStorage.removeItem('Historial')
             window.location.reload()
         }

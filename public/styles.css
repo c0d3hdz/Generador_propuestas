@@ -191,7 +191,15 @@ form input[type='submit']:hover {
 #detalleEstimacion p {
     margin: 0.5rem 0;
 }
-
+.Unidades_select{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #888;
+}
+.Unidades_select > option{
+    font-size: 15px;
+}
 .icon {
     margin-right: 0.5rem;
 }
