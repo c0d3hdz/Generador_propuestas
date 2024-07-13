@@ -37,14 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const historialContainer = document.getElementById('historialContainer')
         const historialEstimaciones = document.getElementById('historialEstimaciones')
         historialEstimaciones.innerHTML = ''
-
         const loader = document.createElement('div')
         loader.className = 'loader'
         historialEstimaciones.appendChild(loader)
-
         setTimeout(() => {
             historialEstimaciones.removeChild(loader)
-
             Historial.forEach((item, index) => {
                 const itemDiv = document.createElement('div')
                 itemDiv.className = 'historial-item'
@@ -69,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `
                 historialEstimaciones.appendChild(itemDiv)
             })
-
             historialContainer.style.display = 'block'
         }, 1000)
     }
