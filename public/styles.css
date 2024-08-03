@@ -1,8 +1,8 @@
 :root {
-    --bg-color: #202124;
+    --bg-color: #1c1e21;
     --text-color: #e8eaed;
-    --accent-color: #bb86fc;
-    --highlight-color: #303134;
+    --accent-color: #ff5722;
+    --highlight-color: #2a2d32;
     --border-color: #5f6368;
     --transition-duration: 0.3s;
 }
@@ -25,22 +25,23 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--accent-color);
+    letter-spacing: 2px;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    padding: 5px;
+    padding: 10px;
     background-color: var(--highlight-color);
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
-    margin: 0 1rem;
-    font-size: 1rem;
+    margin: 0 1.5rem;
+    font-size: 1.1rem;
     position: relative;
     padding: 0.5rem 0;
     transition: color var(--transition-duration);
@@ -80,14 +81,14 @@ main {
     border-radius: 8px;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform var(--transition-duration), box-shadow var(--transition-duration);
     width: 100%;
 }
 
 .container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .container h2 {
@@ -108,10 +109,11 @@ button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
-    background-color: #9c4dcc;
+    background-color: #e64a19;
     transform: translateY(-2px);
 }
 
@@ -175,7 +177,7 @@ form input[type='submit'] {
 }
 
 form input[type='submit']:hover {
-    background-color: #9c4dcc;
+    background-color: #e64a19;
 }
 
 #resultadoEstimacion {
@@ -189,18 +191,22 @@ form input[type='submit']:hover {
 #detalleEstimacion p {
     margin: 0.5rem 0;
 }
+
 .Unidades_select {
     padding: 10px;
     border-radius: 5px;
     background-color: #2a2a2a;
     color: #888;
 }
+
 .Unidades_select > option {
     font-size: 15px;
 }
+
 .input_submit_button {
     margin: auto;
 }
+
 .icon {
     margin-right: 0.5rem;
 }
@@ -214,6 +220,13 @@ form input[type='submit']:hover {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    background-color: var(--highlight-color);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.historial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .historial-item p {
@@ -228,18 +241,19 @@ form input[type='submit']:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     nav a {
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin: 0 0.5rem;
     }
 
     button {
-        width: 80%;
+        width: 100%;
         margin-top: 10px;
     }
+
     .container {
         margin: 10px 0;
         box-sizing: border-box;
