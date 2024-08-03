@@ -1,36 +1,67 @@
-const Driver = window.driver.js.driver
-
-const Hellp = new Driver({
+const driver = window.driver.js.driver
+const driverObj = driver({
     popoverClass: 'driverjs-theme',
-})
-
-
-Hellp.highlight({
-    element: '#Hellp',
-    popover: {
-        side: 'bottom',
-        title: '¿Necesitas ayuda?',
-        description: 'Puedo ayudarte con eso :)',
-    },
-})
-
-const Tour_Animate = new Driver({
-    showProgress: true,
+    animate: true,
+    showProgress: false,
+    showButtons: ['next', 'previous'],
     steps: [
         {
-            element: '.options',
+            element: '#Hellp',
             popover: {
-                title: 'Ejemplo de Tour Animado',
-                description:
-                    'Aquí hay un ejemplo de código que muestra un tour animado. Vamos a guiarte a través de él.',
+                title: '¿Necesitas ayuda?',
+                description: 'Puedo ayudarte con eso. ;)',
                 side: 'left',
+                align: 'start',
+            },
+        },
+        {
+            element: '.options:nth-child(1)',
+            popover: {
+                title: 'Opciones',
+                description: 'lorem',
+                side: 'bottom',
+                align: 'start',
+            },
+        },
+        {
+            element: '#Materiales',
+            popover: {
+                title: 'Opciones',
+                description: 'lorem',
+                side: 'bottom',
+                align: 'start',
+            },
+        },
+        {
+            element: '#Mano_Obra',
+            popover: {
+                title: 'Opciones',
+                description: 'lorem',
+                side: 'bottom',
+                align: 'center',
+            },
+        },
+        {
+            element: '#Crear_Estimacion',
+            popover: {
+                title: 'Opciones',
+                description: 'lorem',
+                side: 'bottom',
+                align: 'end',
+            },
+        },
+        {
+            element: '#historialContainer',
+            popover: {
+                title: 'Opciones',
+                description: 'lorem',
+                side: 'top',
                 align: 'start',
             },
         },
     ],
 })
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('Hellp').addEventListener('click', function () {
-        Tour_Animate.start() 
-    })
+
+document.getElementById('Hellp').addEventListener('click', function () {
+    driverObj.drive()
 })
