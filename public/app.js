@@ -1,17 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Recupera los datos almacenados en localStorage o establece valores por defecto si no existen.
     const materiales = JSON.parse(localStorage.getItem('materiales')) || []
     const manoObra = JSON.parse(localStorage.getItem('manoObra')) || []
     const Historial = JSON.parse(localStorage.getItem('Historial')) || []
+
+    // Muestra un formulario específico basado en su ID.
     const mostrarFormulario = formularioId => {
+        // Oculta todos los formularios.
         document.querySelectorAll('.formulario').forEach(form => (form.style.display = 'none'))
+        // Muestra solo el formulario correspondiente.
         document.getElementById(
             `formulario${formularioId.charAt(0).toUpperCase() + formularioId.slice(1)}`,
         ).style.display = 'block'
     }
 
+    // Actualiza la lista de materiales o mano de obra en el DOM.
     const actualizarLista = (listaId, items) => {
         const lista = document.getElementById(listaId)
-        lista.innerHTML = ''
+        lista.innerHTML = '' // Limpia la lista actual.
         items.forEach(item => {
             const itemDiv = document.createElement('div')
             itemDiv.textContent = `${item.nombre} - ${item.cantidad} ${item.unidad} - $${item.precio}`
@@ -19,25 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    // Limpia los datos de materiales y mano de obra después de la confirmación del usuario.
     const limpiarDatos = () => {
-        if (confirm('Esto borrara los datos de "Materiales" y "Mano de obra", ¿Seguro que deseas limpiar los datos?')) {
+        if (confirm('Esto borrará los datos de "Materiales" y "Mano de obra", ¿Seguro que deseas limpiar los datos?')) {
             localStorage.removeItem('materiales')
             localStorage.removeItem('manoObra')
-            window.location.reload()
-        }
-    }
-    const limpiarHistorial = () => {
-        if (confirm('¿Estás seguro de que deseas limpiar todos los datos?')) {
-            localStorage.removeItem('Historial')
-            window.location.reload()
+            window.location.reload() // Recarga la página para reflejar los cambios.
         }
     }
 
+    // Limpia todo el historial de estimaciones.
+    const limpiarHistorial = () => {
+        if (confirm('¿Estás seguro de que deseas limpiar todos los datos?')) {
+            localStorage.removeItem('Historial')
+            window.location.reload() // Recarga la página para reflejar los cambios.
+        }
+    }
+
+    // Muestra el historial de estimaciones.
     const mostrarHistorial = () => {
         const historialContainer = document.getElementById('historialContainer')
         const historialEstimaciones = document.getElementById('historialEstimaciones')
         historialEstimaciones.innerHTML = ''
-        const loader = document.createElement('div')
+        const loader = document.createElement('div') // Agrega un loader mientras se carga el historial.
         loader.className = 'loader'
         historialEstimaciones.appendChild(loader)
         setTimeout(() => {
@@ -70,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000)
     }
 
+    // Función para agregar nuevos materiales.
     document.getElementById('formMateriales').addEventListener('submit', e => {
         e.preventDefault()
         const nombreMaterial = document.getElementById('nombreMaterial').value
@@ -88,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarLista('listaMaterialesProyecto', materiales)
     })
 
+    // Función para agregar nueva mano de obra.
     document.getElementById('formManoObra').addEventListener('submit', e => {
         e.preventDefault()
         const nombreTrabajo = document.getElementById('nombreTrabajo').value
@@ -101,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarLista('listaManoObraProyecto', manoObra)
     })
 
+    // Función para crear una estimación del proyecto.
     document.getElementById('formProyecto').addEventListener('submit', e => {
         e.preventDefault()
         const nombreProyecto = document.getElementById('nombreProyecto').value
@@ -137,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('resultadoEstimacion').style.display = 'block'
     })
 
+    // Función para imprimir la estimación como PDF.
     const imprimirEstimacion = () => {
         const { jsPDF } = window.jspdf
         const doc = new jsPDF()
@@ -160,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalManoObra = document.querySelector('#detalleEstimacion p:nth-child(6)').textContent
         const totalEstimado = document.querySelector('#detalleEstimacion p:nth-child(7)').textContent
 
+        // Configuración del formato y tamaño de texto del PDF.
         doc.setFontSize(titleFontSize)
         doc.text('Estimación del Proyecto', startX, currentY)
         currentY += lineHeight
@@ -192,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         doc.save('estimacion.pdf')
 
+        // Almacena la estimación actual en el historial.
         Historial.push({
             fechaProyecto: fechaProyecto,
             Proyecto: nombreProyecto,
@@ -201,19 +217,30 @@ document.addEventListener('DOMContentLoaded', () => {
             totalManoObra: totalManoObra,
             totalEstimado: totalEstimado,
         })
+
+        // Limita el número máximo de elementos en el historial.
+        const maxHistorialItems = 50
+        if (Historial.length > maxHistorialItems) {
+            Historial.shift() // Elimina el elemento más antiguo.
+        }
+
         localStorage.setItem('Historial', JSON.stringify(Historial))
         window.location.reload()
     }
 
+    // Inicializa las listas y funciones del historial.
     actualizarLista('listaMateriales', materiales)
     actualizarLista('listaManoObra', manoObra)
     actualizarLista('listaManoObraProyecto', manoObra)
     actualizarLista('listaMaterialesProyecto', materiales)
 
+    // Asigna las funciones a los elementos del DOM.
     window.limpiarDatos = limpiarDatos
     window.limpiarHistorial = limpiarHistorial
     window.imprimirEstimacion = imprimirEstimacion
     window.mostrarFormulario = mostrarFormulario
     window.mostrarHistorial = mostrarHistorial
+
+    // Muestra el historial al cargar la página.
     mostrarHistorial()
 })

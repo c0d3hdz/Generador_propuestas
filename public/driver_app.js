@@ -9,7 +9,7 @@ const driverObj = driver({
             element: '#Hellp',
             popover: {
                 title: '¿Necesitas ayuda?',
-                description: 'Puedo ayudarte con eso. ;)',
+                description: 'Haz clic aquí para obtener asistencia sobre cómo usar la aplicación.',
                 side: 'left',
                 align: 'start',
             },
@@ -18,7 +18,7 @@ const driverObj = driver({
             element: '.options:nth-child(1)',
             popover: {
                 title: 'Opciones',
-                description: 'lorem',
+                description: 'Selecciona las opciones disponibles para crear tu estimación.',
                 side: 'bottom',
                 align: 'start',
             },
@@ -26,8 +26,8 @@ const driverObj = driver({
         {
             element: '#Materiales',
             popover: {
-                title: 'Opciones',
-                description: 'lorem',
+                title: 'Materiales',
+                description: 'Agrega los materiales necesarios, especificando la cantidad y el precio de cada uno.',
                 side: 'bottom',
                 align: 'start',
             },
@@ -35,8 +35,8 @@ const driverObj = driver({
         {
             element: '#Mano_Obra',
             popover: {
-                title: 'Opciones',
-                description: 'lorem',
+                title: 'Mano de Obra',
+                description: 'Introduce el tipo de trabajo, cantidades y precios de la mano de obra requerida.',
                 side: 'bottom',
                 align: 'center',
             },
@@ -44,8 +44,8 @@ const driverObj = driver({
         {
             element: '#Crear_Estimacion',
             popover: {
-                title: 'Opciones',
-                description: 'lorem',
+                title: 'Crear Estimación',
+                description: 'Genera la estimación final con toda la información ingresada.',
                 side: 'bottom',
                 align: 'end',
             },
@@ -53,8 +53,8 @@ const driverObj = driver({
         {
             element: '#historialContainer',
             popover: {
-                title: 'Opciones',
-                description: 'lorem',
+                title: 'Historial de Estimaciones',
+                description: 'Visualiza todas las estimaciones generadas anteriormente.',
                 side: 'top',
                 align: 'start',
             },
