@@ -222,6 +222,8 @@ form input[type='submit']:hover {
     border-radius: 5px;
     background-color: var(--highlight-color);
     transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+    justify-content: start;
+    text-align: start;
 }
 
 .historial-item:hover {
